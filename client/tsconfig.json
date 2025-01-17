@@ -14,7 +14,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "allowJs": true,
-    "declaration": false,
+    "declaration": true,    
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
