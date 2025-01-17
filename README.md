@@ -31,10 +31,10 @@ The application uses the Angular framework as the frontend as this allows for co
 To run the application locally, perform the following steps.
 
 - Open your terminal.
-- cd to the root folder (../Pizza_Shop) and enter npm install to ensure you have all the dependencies installed.
+- cd to the root folder (../Pizza_Shop_Manager) and enter npm install to ensure you have all the dependencies installed.
 - After all the dependencies are installed, enter ng build in the root folder (../Pizza_Shop) to build the appliation.
-- To run the backend server, cd to the backend root folder (../PizzaShopApi) and enter dotnet run.
-- To start the application, cd to the root folder (../Pizza_Shop) and enter ng serve.
+- To run the backend server, cd to the server folder (../server) and enter npx ts-node src/server.ts.
+- To start the application, cd to the client folder (../client) and enter ng serve.
 
 There are no tests installed for the application.
 
@@ -43,9 +43,8 @@ There are no tests installed for the application.
 ## **Technology**
 
 - Angular
-- C#.NET
+- MongoDB
 - Typescript
-- SQL
 - npm
 - Node.js
 - Bootstrap
