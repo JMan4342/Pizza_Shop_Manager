@@ -1,0 +1,40 @@
+<p-card header="Create New Pizza" class="col-6" [style]="{ width: '100%' }">
+  <div class="container">
+    <div class="flex flex-column gap-2">
+      <label for="pizzaName">Name of Pizza</label>
+      <input
+        pInputText
+        id="pizzaName"
+        aria-describedby="pizzaName-help"
+        [(ngModel)]="newPizzaName"
+      />
+    </div>
+    <div class="row">
+      <p-multiSelect
+        [options]="availableToppings"
+        [(ngModel)]="selectedToppings"
+        optionLabel="toppingName"
+        placeholder="Select Toppings"
+      />
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="flex gap-3 mt-1">
+      <p-toast />
+      <p-button
+        label="Submit"
+        severity="success"
+        class="w-full"
+        styleClass="w-full"
+        (onClick)="addNewPizza()"
+      />
+      <p-button
+        label="Close"
+        severity="secondary"
+        class="w-full"
+        styleClass="w-full"
+        (onClick)="closeModal(false)"
+      />
+    </div>
+  </ng-template>
+</p-card>

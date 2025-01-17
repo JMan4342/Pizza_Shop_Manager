@@ -1,0 +1,79 @@
+<p-card class="w-100">
+  <p-table
+    [value]="pizzas"
+    [scrollable]="true"
+    scrollHeight="flex"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Pizza</th>
+        <th>Toppings</th>
+        <th class="d-flex justify-content-center">
+          <p-button
+            class="mx-1"
+            icon="fa-solid fa-plus"
+            [rounded]="true"
+            [raised]="true"
+            severity="success"
+            size="small"
+            pTooltip="Add New Pizza"
+            tooltipPosition="top"
+            (onClick)="addPizzaModal()"
+          />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pizza>
+      <tr>
+        <td>{{ pizza.pizzaName }}</td>
+        <td>{{ pizza.toppings }}</td>
+        <td class="d-flex justify-content-center">
+          <p-button
+            class="mx-1"
+            icon="fa-regular fa-pen-to-square"
+            [rounded]="true"
+            [raised]="true"
+            severity="success"
+            size="small"
+            pTooltip="Edit Pizza"
+            tooltipPosition="top"
+            (onClick)="editPizzaModal(pizza)"
+          />
+          <p-button
+            class="mx-1"
+            icon="fa-solid fa-minus"
+            [rounded]="true"
+            [raised]="true"
+            severity="danger"
+            size="small"
+            pTooltip="Delete Pizza"
+            tooltipPosition="top"
+            (onClick)="deletePizza(pizza)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
+
+<!-- Modals -->
+<p-dialog [modal]="true" [(visible)]="modalVisible">
+  <ng-template pTemplate="headless">
+    <app-new-pizza
+      *ngIf="modalShown == 1"
+      [inPizzas]="pizzas"
+      (outModalState)="modalShown = $event"
+      (outModalVisible)="modalVisible = $event"
+      (repullPizzas)="getPizzas($event)"
+    ></app-new-pizza>
+    <app-edit-pizza
+      *ngIf="modalShown == 2"
+      [inPizzas]="pizzas"
+      [inPizzaDetail]="editPizza"
+      (outModalState)="modalShown = $event"
+      (outModalVisible)="modalVisible = $event"
+      (repullPizzas)="getPizzas($event)"
+    ></app-edit-pizza>
+  </ng-template>
+</p-dialog>

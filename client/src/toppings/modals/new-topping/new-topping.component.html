@@ -1,0 +1,32 @@
+<p-card header="Add New Topping" class="col-6" [style]="{ width: '100%' }">
+  <div class="container">
+    <div class="flex flex-column gap-2">
+      <label for="toppingName">Topping Name</label>
+      <input
+        pInputText
+        id="toppingName"
+        aria-describedby="pizzaName-help"
+        [(ngModel)]="newToppingName"
+      />
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="flex gap-3 mt-1">
+      <p-toast />
+      <p-button
+        label="Submit"
+        severity="success"
+        class="w-full"
+        styleClass="w-full mr-1"
+        (onClick)="addNewTopping()"
+      />
+      <p-button
+        label="Close"
+        severity="secondary"
+        class="w-full"
+        styleClass="w-full ml-1"
+        (onClick)="closeModal(false)"
+      />
+    </div>
+  </ng-template>
+</p-card>
