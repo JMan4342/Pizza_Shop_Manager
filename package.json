@@ -1,59 +1,13 @@
 {
-  "name": "pizza-shop",
+  "name": "pizza-shop-manager",
   "version": "0.0.0",
   "engines": {
     "node": "22.x"
   },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "heroku-postbuild": "ng build"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular-devkit/build-angular": "^18.2.12",
-    "@angular/animations": "^18.2.0",
-    "@angular/cli": "^18.2.12",
-    "@angular/common": "^18.2.0",
-    "@angular/compiler": "^18.2.0",
-    "@angular/core": "^18.2.0",
-    "@angular/forms": "^18.2.0",
-    "@angular/platform-browser": "^18.2.0",
-    "@angular/platform-browser-dynamic": "^18.2.0",
-    "@angular/platform-server": "^18.2.0",
-    "@angular/router": "^18.2.0",
-    "@angular/ssr": "^18.2.12",
-    "@types/express": "^4.17.17",
-    "@types/lodash": "^4.17.14",
-    "bootstrap": "^5.3.3",
-    "express": "^4.18.2",
-    "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
-    "mongodb": "^6.12.0",
-    "primeng": "^17.18.12",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.14.10"
-  },
-  "devDependencies": {
-    "@angular/compiler-cli": "^18.2.0",
-    "@types/express": "^4.17.17",
-    "@types/jasmine": "~5.1.0",
-    "@types/lodash": "^4.17.14",
-    "@types/lodash-es": "^4.17.12",
-    "@types/node": "^18.19.70",
-    "jasmine-core": "~5.2.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "lodash": "^4.17.21",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "~5.5.2"
+    "start": "npm start --prefix server",
+    "install-client": "cd client && npm install && npm run build && cd ..",
+    "install-server": "cd server && npm install && cd .. ",
+    "heroku-postbuild": "npm run install-client && npm run install-server"
   }
 }
