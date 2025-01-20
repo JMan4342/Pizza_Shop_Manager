@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = process.env.PORT || 4200;
+const port = process.env.PORT || 8080;
 const server = require('http').Server(app);
 
 
 // Serve only the static files form the angularapp directory
-app.use(express.static(__dirname + '/https://pizza-shop-manager-e295f45a4e32.herokuapp.com'));
+app.use(express.static(__dirname + 'dist/pizza-shop-manager'));
  
 app.get('/*', function(req,res) {
  
-res.sendFile(path.join(__dirname+'/https://pizza-shop-manager-e295f45a4e32.herokuapp.com/index.html'));
+res.sendFile(path.join(__dirname+'dist/pizza-shop-manager/index.html'));
 });
  
 // Start the app by listening on the default Heroku port
