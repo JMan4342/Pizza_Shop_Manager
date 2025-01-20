@@ -2,7 +2,7 @@
   "name": "pizza-shop-manager",
   "version": "0.0.0",
   "engines": {
-    "node": "22.x.x"
+    "node": "22.x"
   },
   "scripts": {
     "start": "node server.js",
@@ -10,5 +10,8 @@
     "install-server": "cd server && npm install && cd .. ",
     "build-client": "cd client npm run build",
     "heroku-postbuild": "npm run install-client && npm run install-server && npm run build-client"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }
