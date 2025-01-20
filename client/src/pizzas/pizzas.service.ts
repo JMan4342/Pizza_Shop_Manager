@@ -8,10 +8,11 @@ import { Pizza } from '../shared/classes/pizza';
 })
 export class PizzasService {
   private apiUrl = process.env['PORT'] ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com/' : 'http://localhost:5200';
-  
+
   constructor(private http: HttpClient) {}
 
   getPizzas(): Observable<any> {
+    console.log('apiUrl', this.apiUrl);
     return this.http.get(`${this.apiUrl}/pizzas`).pipe(
       map((results) => {
         return results;
