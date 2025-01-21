@@ -8,7 +8,8 @@ import { Topping } from '../shared/classes/topping';
 })
 export class ToppingsService {
 
-  private apiUrl = process.env['PORT'] ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com/' : 'http://localhost:5200';
+  // private apiUrl = process.env['PORT'] ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com/' : 'http://localhost:5200';
+  private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com/';
 
   constructor(private http: HttpClient) { }
 
