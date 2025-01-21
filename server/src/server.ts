@@ -18,13 +18,14 @@ if (!ATLAS_URI) {
 
 connectToDatabase(ATLAS_URI)
   .then(() => {
+    const port = process.env['PORT'] || 5200;
     const app = express();
     app.use(cors());
 
     app.use("/pizzas", pizzaRouter);
     app.use("/toppings", toppingRouter);
 
-    app.listen(5200, () => {
+    app.listen(port, () => {
       console.log(`Server running at http://localhost:5200...`);
     });
   })
