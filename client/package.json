@@ -6,14 +6,10 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "npm run -s build:ssr && npm run -s serve:ssr",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "dev:ssr": "ng run frontend: serve-ssr",
-    "serve:ssr": "node dist/pizza-shop/server/main.js",
-    "build:ssr": "ng build && ng run frontend:server",
-    "prerender": "ng run frontend:prerender"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

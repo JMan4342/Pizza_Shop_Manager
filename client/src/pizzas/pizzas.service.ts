@@ -7,12 +7,14 @@ import { Pizza } from '../shared/classes/pizza';
   providedIn: 'root',
 })
 export class PizzasService {
-  private apiUrl = 'http://localhost:5200';
+  // private apiUrl = 'http://localhost:5200';
+  private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com';
+  // private apiUrl = process.env['PORT'] ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com' : 'http://localhost:5200';
 
   constructor(private http: HttpClient) {}
 
   getPizzas(): Observable<any> {
-    return this.http.get(`/pizzas`).pipe(
+    return this.http.get(`${this.apiUrl}/api/pizzas`).pipe(
       map((results) => {
         return results;
       })
@@ -21,7 +23,7 @@ export class PizzasService {
 
   addNewPizza(pizza: Pizza): Observable<any> {
     return this.http
-      .post(`/pizzas`, pizza, {
+      .post(`${this.apiUrl}/api/pizzas`, pizza, {
         responseType: 'text',
       })
       .pipe(
@@ -34,7 +36,7 @@ export class PizzasService {
   updatePizza(pizza: Pizza): Observable<any> {
     let pizzaBody = {toppings: pizza.toppings, pizzaName: pizza.pizzaName};
     return this.http
-      .put(`/pizzas/${pizza._id}`, pizzaBody, {
+      .put(`${this.apiUrl}/api/pizzas/${pizza._id}`, pizzaBody, {
         responseType: 'text',
       })
       .pipe(
@@ -46,7 +48,7 @@ export class PizzasService {
 
   deletePizza(pizza: Pizza): Observable<any> {
     return this.http
-      .delete(`/pizzas/${pizza._id}`, { responseType: 'text' })
+      .delete(`${this.apiUrl}/api/pizzas/${pizza._id}`, { responseType: 'text' })
       .pipe(
         map((result) => {
           return result;

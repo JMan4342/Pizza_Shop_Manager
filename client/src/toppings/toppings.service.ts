@@ -8,12 +8,14 @@ import { Topping } from '../shared/classes/topping';
 })
 export class ToppingsService {
 
-  private apiUrl = 'http://localhost:5200';
+  // private apiUrl = 'http://localhost:5200';
+  private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com'
+  // private apiUrl = process.env['PORT'] ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com' : 'http://localhost:5200';
 
   constructor(private http: HttpClient) { }
 
   getToppings(): Observable<any> {
-    return this.http.get(`/toppings`).pipe(
+    return this.http.get(`${this.apiUrl}/api/toppings`).pipe(
       map((results) => {
         return results;
       })
@@ -25,7 +27,7 @@ export class ToppingsService {
     tempTopping.toppingName = toppingName;
     
         return this.http
-          .post(`/toppings`, tempTopping, {
+          .post(`${this.apiUrl}/api/toppings`, tempTopping, {
             responseType: 'text',
           })
           .pipe(
@@ -38,7 +40,7 @@ export class ToppingsService {
   updateTopping(topping: Topping): Observable<any> {
     let toppingBody = {toppingName: topping.toppingName}
     return this.http
-      .put(`/toppings/${topping._id}`, toppingBody, {
+      .put(`${this.apiUrl}/api/toppings/${topping._id}`, toppingBody, {
         responseType: 'text',
       })
       .pipe(
@@ -50,7 +52,7 @@ export class ToppingsService {
 
   deleteTopping(topping: Topping): Observable<any> {
     return this.http
-      .delete(`/toppings/${topping._id}`, { responseType: 'text' })
+      .delete(`${this.apiUrl}/api/toppings/${topping._id}`, { responseType: 'text' })
       .pipe(
         map((result) => {
           return result;

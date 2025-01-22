@@ -50,12 +50,12 @@ if (!ATLAS_URI) {
 }
 (0, database_1.connectToDatabase)(ATLAS_URI)
     .then(() => {
-    const port = process.env['PORT'] || 5200;
+    // const port = process.env['PORT'] || 5200;
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)());
     app.use("/pizzas", pizza_routes_1.pizzaRouter);
     app.use("/toppings", topping_routes_1.toppingRouter);
-    app.listen(port, () => {
+    app.listen(5200, () => {
         console.log(`Server running at http://localhost:5200...`);
     });
 })
