@@ -15,6 +15,23 @@ app.get("/*", function (req, res) {
 
 // Start the app by listening on the default Heroku port
 
-server.listen(port, function () {
-  console.log("App running on port " + port);
+// server.listen(port, function () {
+//   console.log("App running on port " + port);
+// });
+
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "http://localhost:5200", function (err, client) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+
+
+  db = client.db();
+  console.log("Database connection ready");
+
+
+  var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });
 });

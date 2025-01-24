@@ -5,7 +5,9 @@ import { connectToDatabase } from "./database";
 import { pizzaRouter } from "./pizza.routes";
 import { toppingRouter } from "./topping.routes";
 
-dotenv.config();
+if (process.env.NODE_ENV != "production") {
+    require("dotenv").config();
+}
 
 const { ATLAS_URI } = process.env;
 
