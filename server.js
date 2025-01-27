@@ -8,7 +8,7 @@ const server = require("http").Server(app);
 // app.use(express.static("client/dist/pizza-shop-manager/browser"));
 app.use(express.static(path.join(__dirname, "client/dist/pizza-shop-manager/browser")));
 
-app.get("/*", function (req, res) {
+app.get("*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "client/dist/pizza-shop-manager/browser/index.html")
   );
