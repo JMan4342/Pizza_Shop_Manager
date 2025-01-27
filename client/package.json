@@ -8,6 +8,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-prod": "ng build --env=prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
