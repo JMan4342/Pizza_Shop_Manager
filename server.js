@@ -1,8 +1,11 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
 const port = process.env.PORT || 8080;
 const server = require("http").Server(app);
+
+app.use(bodyParser.json());
 
 // Serve only the static files form the angularapp directory
 // app.use(express.static("client/dist/pizza-shop-manager/browser"));
