@@ -19,7 +19,8 @@ export class PizzasService {
     console.log(environment);
     return this.http.get(`${this.apiUrl}/api/pizzas`, {responseType: 'text'}).pipe(
       map((results) => {
-        return results;
+        let parsedResults = JSON.parse(results);
+        return parsedResults;
       })
     );
   }
