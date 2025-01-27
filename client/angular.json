@@ -51,6 +51,10 @@
                   "maximumError": "4kB"
                 }
               ],
+              "fileReplacements": [{
+                "replace": "environments/environment.ts",
+                "with": "environments/environment.prod.ts"
+              }],
               "outputHashing": "all",
               "optimization": {
                 "scripts": true,
@@ -58,7 +62,8 @@
                   "minify": true,
                   "inlineCritical": false
                 }
-              }
+              },
+              "aot": true
             },
             "development": {
               "optimization": false,

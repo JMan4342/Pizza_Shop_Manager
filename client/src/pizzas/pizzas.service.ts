@@ -8,14 +8,15 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class PizzasService {
-  private apiUrl = environment.API_URL;
+  // private apiUrl = environment.API_URL;
   // private apiUrl = 'http://localhost:5200';
   // private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com';
-  // private apiUrl = process.env['PORT'] ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com' : 'http://localhost:5200';
+  private apiUrl = environment.production == true ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com' : 'http://localhost:5200';
 
   constructor(private http: HttpClient) {}
 
   getPizzas(): Observable<any> {
+    console.log(environment);
     return this.http.get(`${this.apiUrl}/api/pizzas`).pipe(
       map((results) => {
         return results;
