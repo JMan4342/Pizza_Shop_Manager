@@ -16,7 +16,7 @@ export class ToppingsService {
   constructor(private http: HttpClient) { }
 
   getToppings(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/toppings`).pipe(
+    return this.http.get(`${this.apiUrl}/api/toppings`, {responseType: 'text'}).pipe(
       map((results) => {
         return results;
       })

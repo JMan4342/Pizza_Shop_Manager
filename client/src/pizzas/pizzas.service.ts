@@ -17,7 +17,7 @@ export class PizzasService {
 
   getPizzas(): Observable<any> {
     console.log(environment);
-    return this.http.get(`${this.apiUrl}/api/pizzas`).pipe(
+    return this.http.get(`${this.apiUrl}/api/pizzas`, {responseType: 'text'}).pipe(
       map((results) => {
         return results;
       })
