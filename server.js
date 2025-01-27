@@ -5,11 +5,12 @@ const port = process.env.PORT || 8080;
 const server = require("http").Server(app);
 
 // Serve only the static files form the angularapp directory
-app.use(express.static("client/dist/pizza-shop-manager/browser"));
+// app.use(express.static("client/dist/pizza-shop-manager/browser"));
+app.use(express.static(path.join(__dirname, "client/dist/pizza-shop-manager/browser")));
 
 app.get("/*", function (req, res) {
   res.sendFile(
-    path.join("client/dist/pizza-shop-manager/browser/index.html")
+    path.join(__dirname, "client/dist/pizza-shop-manager/browser/index.html")
   );
 });
 
