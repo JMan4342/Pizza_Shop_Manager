@@ -26,8 +26,11 @@ export class PizzasService {
   }
 
   addNewPizza(pizza: Pizza): Observable<any> {
+    let body = JSON.stringify({description: pizza});
+    // let headers = new Headers({'Content-Type': 'application/json'});
+
     return this.http
-      .post(`${this.apiUrl}/api/pizzas`, pizza, {
+      .post(`${this.apiUrl}/api/pizzas`, body, {
         responseType: 'text',
       })
       .pipe(
@@ -38,7 +41,8 @@ export class PizzasService {
   }
 
   updatePizza(pizza: Pizza): Observable<any> {
-    let pizzaBody = {toppings: pizza.toppings, pizzaName: pizza.pizzaName};
+    // let body = JSON.stringify({description: pizza});
+    let pizzaBody = JSON.stringify({toppings: pizza.toppings, pizzaName: pizza.pizzaName});
     return this.http
       .put(`${this.apiUrl}/api/pizzas/${pizza._id}`, pizzaBody, {
         responseType: 'text',

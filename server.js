@@ -6,14 +6,26 @@ const port = process.env.PORT || 8080;
 const server = require("http").Server(app);
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve only the static files form the angularapp directory
 // app.use(express.static("client/dist/pizza-shop-manager/browser"));
-app.use(express.static(path.join(__dirname, "client/dist/pizza-shop-manager/browser")));
+app.use(
+  express.static(path.join(__dirname, "client/dist/pizza-shop-manager/browser"))
+);
+app.use(
+  express.static(path.join(__dirname, "client/dist/pizza-shop-manager/server"))
+);
 
-app.get("*", function (req, res) {
+app.get("/*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "client/dist/pizza-shop-manager/browser/index.html")
+  );
+  res.sendFile(
+    path.join(
+      __dirname,
+      "client/dist/pizza-shop-manager/server/index.server.html"
+    )
   );
 });
 
@@ -29,10 +41,8 @@ server.listen(port, function () {
 //     process.exit(1);
 //   }
 
-
 //   db = client.db();
 //   console.log("Database connection ready");
-
 
 //   var server = app.listen(process.env.PORT || 8080, function () {
 //     var port = server.address().port;
