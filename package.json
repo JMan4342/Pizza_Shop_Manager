@@ -5,7 +5,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server.js",
     "install-client": "cd client && npm install && npm run build && cd ..",
     "install-server": "cd server && npm install && cd .. ",
     "build-client": "cd client npm run build",
