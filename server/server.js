@@ -1,32 +1,37 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
 const port = process.env.PORT || 8080;
 const server = require("http").Server(app);
 
+// mongoose
+//   .connect(process.env.ATLAS_URI)
+//   .then(() => console.log("Connected to MongoDB"));
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Serve only the static files form the angularapp directory
 // app.use(express.static("client/dist/pizza-shop-manager/browser"));
 app.use(
   express.static(path.join(__dirname, "client/dist/pizza-shop-manager/browser"))
 );
-app.use(
-  express.static(path.join(__dirname, "client/dist/pizza-shop-manager/server"))
-);
+// app.use(
+//   express.static(path.join(__dirname, "client/dist/pizza-shop-manager/server"))
+// );
 
 app.get("/*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "client/dist/pizza-shop-manager/browser/index.html")
   );
-  res.sendFile(
-    path.join(
-      __dirname,
-      "client/dist/pizza-shop-manager/server/index.server.html"
-    )
-  );
+  // res.sendFile(
+  //   path.join(
+  //     __dirname,
+  //     "client/dist/pizza-shop-manager/server/index.server.html"
+  //   )
+  // );
 });
 
 // Start the app by listening on the default Heroku port

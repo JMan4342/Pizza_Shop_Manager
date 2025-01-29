@@ -5,13 +5,14 @@
     "node": "22.x"
   },
   "scripts": {
-    "start": "node server.js",
-    "install-client": "cd client && npm install && cd ..",
+    "start": "node .server/server.js",
+    "install-client": "cd client && npm install && npm run build && cd ..",
     "install-server": "cd server && npm install && cd .. ",
     "build-client": "cd client npm run build --aot --prod",
     "heroku-postbuild": "npm run install-client && npm run install-server && npm run build-client"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
   }
 }
