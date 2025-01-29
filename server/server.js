@@ -18,20 +18,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   express.static(path.join(__dirname, "client/dist/pizza-shop-manager/browser"))
 );
-// app.use(
-//   express.static(path.join(__dirname, "client/dist/pizza-shop-manager/server"))
-// );
+app.use(
+  express.static(path.join(__dirname, "client/dist/pizza-shop-manager/server"))
+);
 
 app.get("/*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "client/dist/pizza-shop-manager/browser/index.html")
   );
-  // res.sendFile(
-  //   path.join(
-  //     __dirname,
-  //     "client/dist/pizza-shop-manager/server/index.server.html"
-  //   )
-  // );
+  res.sendFile(
+    path.join(
+      __dirname,
+      "client/dist/pizza-shop-manager/server/index.server.html"
+    )
+  );
 });
 
 // Start the app by listening on the default Heroku port
