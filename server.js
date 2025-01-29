@@ -11,7 +11,7 @@ const server = require("http").Server(app);
 //   .then(() => console.log("Connected to MongoDB"));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 // Serve only the static files form the angularapp directory
 // app.use(express.static("client/dist/pizza-shop-manager/browser"));
