@@ -202,6 +202,7 @@ const app = express();
 const { MongoClient, ObjectId } = require("mongodb");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path = require("path");
 var port = process.env.PORT || 8080;
 var pizzaRoutes = require("./routes/pizzas"); // Import the application end points/API
 var toppingRoutes = require("./routes/toppings");
@@ -211,6 +212,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  express.static(
+    path.join(__dirname, "../client/dist/pizza-shop-manager/browser")
+  )
+);
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../client/dist/pizza-shop-manager/browser/index.html")
+  );
+});
+
 app.use("/api/pizzas", pizzaRoutes);
 app.use("/api/toppings", toppingRoutes);
 
