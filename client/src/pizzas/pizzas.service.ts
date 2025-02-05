@@ -11,13 +11,13 @@ export class PizzasService {
   // private apiUrl = environment.API_URL;
   // private apiUrl = 'http://localhost:5200';
   // private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com';
-  private apiUrl = environment.production == true ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com' : 'http://localhost:5200';
+  private apiUrl = environment.production == true ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com' : 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
   getPizzas(): Observable<any> {
     console.log(environment);
-    return this.http.get(`${this.apiUrl}/api/pizzas`, {responseType: 'text'}).pipe(
+    return this.http.get(`${this.apiUrl}/api/pizzas/getPizzas`, {responseType: 'text'}).pipe(
       map((results) => {
         let parsedResults = JSON.parse(results);
         return parsedResults;
@@ -26,11 +26,13 @@ export class PizzasService {
   }
 
   addNewPizza(pizza: Pizza): Observable<any> {
-    let body = JSON.stringify({description: pizza});
+    // let body = JSON.stringify({description: pizza});
+    let body = {toppings: pizza.toppings, pizzaName: pizza.pizzaName};
+
     // let headers = new Headers({'Content-Type': 'application/json'});
 
     return this.http
-      .post(`${this.apiUrl}/api/pizzas`, body, {
+      .post(`${this.apiUrl}/api/pizzas/addPizza`, body, {
         responseType: 'text',
       })
       .pipe(
@@ -42,9 +44,11 @@ export class PizzasService {
 
   updatePizza(pizza: Pizza): Observable<any> {
     // let body = JSON.stringify({description: pizza});
-    let pizzaBody = JSON.stringify({toppings: pizza.toppings, pizzaName: pizza.pizzaName});
+    // let pizzaBody = JSON.stringify({toppings: pizza.toppings, pizzaName: pizza.pizzaName});
+    let pizzaBody = {toppings: pizza.toppings, pizzaName: pizza.pizzaName};
+
     return this.http
-      .put(`${this.apiUrl}/api/pizzas/${pizza._id}`, pizzaBody, {
+      .put(`${this.apiUrl}/api/pizzas/updatePizza/${pizza._id}`, pizzaBody, {
         responseType: 'text',
       })
       .pipe(
@@ -56,7 +60,7 @@ export class PizzasService {
 
   deletePizza(pizza: Pizza): Observable<any> {
     return this.http
-      .delete(`${this.apiUrl}/api/pizzas/${pizza._id}`, { responseType: 'text' })
+      .delete(`${this.apiUrl}/api/pizzas/deletePizza/${pizza._id}`, { responseType: 'text' })
       .pipe(
         map((result) => {
           return result;

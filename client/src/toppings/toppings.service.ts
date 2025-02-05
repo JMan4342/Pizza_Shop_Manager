@@ -14,13 +14,13 @@ export class ToppingsService {
   private apiUrl =
     environment.production == true
       ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com'
-      : 'http://localhost:5200';
+      : 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
   getToppings(): Observable<any> {
     return this.http
-      .get(`${this.apiUrl}/api/toppings`, { responseType: 'text' })
+      .get(`${this.apiUrl}/api/toppings/getToppings`, { responseType: 'text' })
       .pipe(
         map((results) => {
           let parsedResults = JSON.parse(results);
@@ -32,10 +32,12 @@ export class ToppingsService {
   addNewTopping(toppingName: string): Observable<any> {
     let tempTopping = new Topping();
     tempTopping.toppingName = toppingName;
-    let body = JSON.stringify({ description: tempTopping });
+    // let body = JSON.stringify({ _id: '', toppingName: tempTopping.toppingName });
+    let body = tempTopping;
+    console.log("body", body);
 
     return this.http
-      .post(`${this.apiUrl}/api/toppings`, body, {
+      .post(`${this.apiUrl}/api/toppings/addTopping`, body, {
         responseType: 'text',
       })
       .pipe(
@@ -46,9 +48,11 @@ export class ToppingsService {
   }
 
   updateTopping(topping: Topping): Observable<any> {
-    let toppingBody = JSON.stringify({ toppingName: topping.toppingName });
+    // let toppingBody = JSON.stringify({ toppingName: topping.toppingName });
+    let toppingBody = { toppingName: topping.toppingName };
+
     return this.http
-      .put(`${this.apiUrl}/api/toppings/${topping._id}`, toppingBody, {
+      .put(`${this.apiUrl}/api/toppings/updateTopping/${topping._id}`, toppingBody, {
         responseType: 'text',
       })
       .pipe(
@@ -60,7 +64,7 @@ export class ToppingsService {
 
   deleteTopping(topping: Topping): Observable<any> {
     return this.http
-      .delete(`${this.apiUrl}/api/toppings/${topping._id}`, {
+      .delete(`${this.apiUrl}/api/toppings/deleteTopping/${topping._id}`, {
         responseType: 'text',
       })
       .pipe(
