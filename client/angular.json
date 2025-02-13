@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Pizza_Shop": {
+    "Pizza_Shop_Manager": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Pizza_Shop:build:production"
+              "buildTarget": "Pizza_Shop_Manager:build:production"
             },
             "development": {
-              "buildTarget": "Pizza_Shop:build:development"
+              "buildTarget": "Pizza_Shop_Manager:build:development"
             }
           },
           "defaultConfiguration": "development"
