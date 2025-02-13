@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,4 +22,6 @@ app.get("/*", function (req, res) {
 });
 
 
-app.listen(process.env.PORT || 8080);
+app.listen(port, () => {
+    console.log('Client side port listening', port)
+});
