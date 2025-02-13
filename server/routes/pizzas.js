@@ -36,6 +36,7 @@ const pizzaCollection = client.db(DB_NAME).collection(COLLECTION);
 
 const pizzaRouter = express.Router();
 pizzaRouter.use(express.json());
+pizzaRouter.use(express.urlencoded({ extended: true }));
 
 pizzaRouter.get("/getPizzas", async (_req, res) => {
   //   try {

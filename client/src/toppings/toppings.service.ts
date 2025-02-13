@@ -13,14 +13,15 @@ export class ToppingsService {
   // private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com'
   private apiUrl =
     environment.production == true
-      ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com'
-      : 'http://localhost:8080';
+      ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com/'
+      : 'http://localhost:8080/';
+  // private apiUrl = environment.production == true ? '/' : 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {}
 
   getToppings(): Observable<any> {
     return this.http
-      .get(`${this.apiUrl}/api/toppings/getToppings`, { responseType: 'text' })
+      .get(`${this.apiUrl}api/toppings/getToppings`, { responseType: 'text' })
       .pipe(
         map((results) => {
           let parsedResults = JSON.parse(results);
@@ -34,10 +35,10 @@ export class ToppingsService {
     tempTopping.toppingName = toppingName;
     // let body = JSON.stringify({ _id: '', toppingName: tempTopping.toppingName });
     let body = tempTopping;
-    console.log("body", body);
+    console.log('body', body);
 
     return this.http
-      .post(`${this.apiUrl}/api/toppings/addTopping`, body, {
+      .post(`${this.apiUrl}api/toppings/addTopping`, body, {
         responseType: 'text',
       })
       .pipe(
@@ -52,9 +53,13 @@ export class ToppingsService {
     let toppingBody = { toppingName: topping.toppingName };
 
     return this.http
-      .put(`${this.apiUrl}/api/toppings/updateTopping/${topping._id}`, toppingBody, {
-        responseType: 'text',
-      })
+      .put(
+        `${this.apiUrl}api/toppings/updateTopping/${topping._id}`,
+        toppingBody,
+        {
+          responseType: 'text',
+        }
+      )
       .pipe(
         map((result) => {
           return result;
@@ -64,7 +69,7 @@ export class ToppingsService {
 
   deleteTopping(topping: Topping): Observable<any> {
     return this.http
-      .delete(`${this.apiUrl}/api/toppings/deleteTopping/${topping._id}`, {
+      .delete(`${this.apiUrl}api/toppings/deleteTopping/${topping._id}`, {
         responseType: 'text',
       })
       .pipe(
