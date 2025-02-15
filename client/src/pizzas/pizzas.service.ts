@@ -8,17 +8,12 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class PizzasService {
-  // private apiUrl = environment.API_URL;
-  // private apiUrl = 'http://localhost:5200';
-  // private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com';
   private apiUrl = environment.production == true ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com/' : 'http://localhost:8080/';
-  // private apiUrl = environment.production == true ? '/' : 'http://localhost:8080/';
 
 
   constructor(private http: HttpClient) {}
 
   getPizzas(): Observable<any> {
-    console.log(environment);
     return this.http.get(`${this.apiUrl}api/pizzas/getPizzas`, {responseType: 'text'}).pipe(
       map((results) => {
         let parsedResults = JSON.parse(results);
@@ -28,10 +23,7 @@ export class PizzasService {
   }
 
   addNewPizza(pizza: Pizza): Observable<any> {
-    // let body = JSON.stringify({description: pizza});
     let body = {toppings: pizza.toppings, pizzaName: pizza.pizzaName};
-
-    // let headers = new Headers({'Content-Type': 'application/json'});
 
     return this.http
       .post(`${this.apiUrl}api/pizzas/addPizza`, body, {
@@ -45,8 +37,6 @@ export class PizzasService {
   }
 
   updatePizza(pizza: Pizza): Observable<any> {
-    // let body = JSON.stringify({description: pizza});
-    // let pizzaBody = JSON.stringify({toppings: pizza.toppings, pizzaName: pizza.pizzaName});
     let pizzaBody = {toppings: pizza.toppings, pizzaName: pizza.pizzaName};
 
     return this.http

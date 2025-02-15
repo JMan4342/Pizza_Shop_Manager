@@ -1,18 +1,9 @@
 var dotenv = require("dotenv");
 const express = require("express");
-// const mongodb = require("mongodb");
 const { MongoClient, ObjectId } = require("mongodb");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Topping = require("../models/topping");
-// const { Topping } = mongoose.model("Topping", ToppingSchema);
-
-// const toppingSchema = new mongoose.Schema({
-//   _id: ObjectId,
-//   toppingName: String,
-// });
-// const Topping = mongoose.model('Topping', toppingSchema)
-// const toppingCollection = new mongodb.Collection("toppings");
 
 if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
@@ -32,16 +23,8 @@ const DB_NAME = "pizzaShopManager";
 const COLLECTION = "toppings";
 const toppingCollection = client.db(DB_NAME).collection(COLLECTION);
 
-// mongodb.MongoClient.connect(ATLAS_URI, (error, client) => {
-//     db = client.db("pizzaShopManager");
-//     toppingCollection = db.collection("toppings");
-// });
-
-// const toppingCollection = db.collection("toppings");
-
 const toppingRouter = express.Router();
 toppingRouter.use(express.json());
-// toppingRouter.use(bodyParser.json());
 
 toppingRouter.get("/getToppings", async (req, res) => {
   try {

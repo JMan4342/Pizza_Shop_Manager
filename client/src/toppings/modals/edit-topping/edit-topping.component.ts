@@ -66,7 +66,6 @@ export class EditToppingComponent implements OnInit {
         summary: 'Not Created',
         detail: 'Topping Already Exists',
       });
-      // this.topping = _cloneDeep(this.inToppingDetail);
     }
   }
 

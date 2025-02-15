@@ -8,14 +8,10 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class ToppingsService {
-  // private apiUrl = environment.API_URL;
-  // private apiUrl = 'http://localhost:5200';
-  // private apiUrl = 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com'
   private apiUrl =
     environment.production == true
       ? 'https://pizza-shop-manager-e295f45a4e32.herokuapp.com/'
       : 'http://localhost:8080/';
-  // private apiUrl = environment.production == true ? '/' : 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {}
 
@@ -33,9 +29,7 @@ export class ToppingsService {
   addNewTopping(toppingName: string): Observable<any> {
     let tempTopping = new Topping();
     tempTopping.toppingName = toppingName;
-    // let body = JSON.stringify({ _id: '', toppingName: tempTopping.toppingName });
     let body = tempTopping;
-    console.log('body', body);
 
     return this.http
       .post(`${this.apiUrl}api/toppings/addTopping`, body, {
@@ -49,7 +43,6 @@ export class ToppingsService {
   }
 
   updateTopping(topping: Topping): Observable<any> {
-    // let toppingBody = JSON.stringify({ toppingName: topping.toppingName });
     let toppingBody = { toppingName: topping.toppingName };
 
     return this.http

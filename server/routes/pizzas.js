@@ -23,31 +23,11 @@ const COLLECTION = "pizzas";
 
 const pizzaCollection = client.db(DB_NAME).collection(COLLECTION);
 
-// mongodb.MongoClient.connect(ATLAS_URI, (error, client) => {
-//     db = client.db("pizzaShopManager");
-//     pizzaCollection = db.collection("pizzas");
-// })
-
-// const client = new mongodb.MongoClient(ATLAS_URI);
-// client.connect();
-
-// const db = client.db("pizzaShopManager");
-// const pizzaCollection = db.collection("pizzas");
-
 const pizzaRouter = express.Router();
 pizzaRouter.use(express.json());
 pizzaRouter.use(express.urlencoded({ extended: true }));
 
 pizzaRouter.get("/getPizzas", async (_req, res) => {
-  //   try {
-  //     const pizzas = await pizzaCollection.find({}).toArray();
-  //     res.status(200).send(pizzas);
-  //   } catch (error) {
-  //     res
-  //       .status(500)
-  //       .send(error instanceof Error ? error.message : "Unknown error");
-  //   }
-  //   await client.connect();
   try {
     const pizzas = await pizzaCollection.find({}).toArray();
     res.status(200).send(pizzas);
@@ -56,9 +36,6 @@ pizzaRouter.get("/getPizzas", async (_req, res) => {
       .status(500)
       .send(error instanceof Error ? error.message : "Unknown error");
   }
-  //   finally {
-  //     await client.close();
-  //   }
 });
 
 pizzaRouter.get("/getPizza/:id", async (req, res) => {
