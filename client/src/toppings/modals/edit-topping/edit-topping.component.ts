@@ -31,7 +31,8 @@ export class EditToppingComponent implements OnInit {
   @Output() repullToppings = new EventEmitter<boolean>();
 
   topping: Topping = new Topping();
-  currentToppings: Topping[] = []
+  currentToppings: Topping[] = [];
+  remainToppings: Topping[] = [];
 
   constructor(
     private toppingsService: ToppingsService,
@@ -44,11 +45,12 @@ export class EditToppingComponent implements OnInit {
 
     this.currentToppings = [];
     this.currentToppings = _cloneDeep(this.inToppings);
+    this.remainToppings = this.currentToppings.filter(x => x._id != this.topping._id);
   }
 
   updateTopping(): void {
     if (
-      this.currentToppings.filter(
+      this.remainToppings.filter(
         (x) => x.toppingName.toLowerCase() == this.topping.toppingName.toLowerCase()
       ).length == 0
     ) {      

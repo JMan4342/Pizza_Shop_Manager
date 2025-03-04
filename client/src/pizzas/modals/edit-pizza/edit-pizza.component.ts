@@ -36,6 +36,7 @@ export class EditPizzaComponent {
 
   pizza: Pizza = new Pizza();
   currentPizzas: Pizza[] = [];
+  remainPizzas: Pizza[] = [];
   availableToppings: Topping[] = [];
   selectedToppings: Topping[] = [];
 
@@ -51,6 +52,7 @@ export class EditPizzaComponent {
 
     this.currentPizzas = [];
     this.currentPizzas = _cloneDeep(this.inPizzas);
+    this.remainPizzas = this.currentPizzas.filter(x => x._id != this.pizza._id);
 
     this.toppingsService.getToppings().subscribe({
       next: (results) => {
@@ -82,7 +84,7 @@ export class EditPizzaComponent {
     }
     selectedToppingsString = selectedToppingsNames.join(', ');
     if (
-      this.currentPizzas.filter(
+      this.remainPizzas.filter(
         (x) =>
           x.pizzaName.toLowerCase() == this.pizza.pizzaName.toLowerCase() ||
           x.toppings.toLowerCase() == selectedToppingsString.toLowerCase()
